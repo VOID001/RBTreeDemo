@@ -2,16 +2,16 @@
 
 Status RBTree::L_Rotate(RBNode *node)
 {
-	if(!isNil(node->right))
+	if(node->right()!=nil)
 	{
 		RBNode* rnode=node->right();
 		node->setRight(rnode->left());
-		if(!isNil(rnode->left))
+		if(rnode->left()!=nil)
 		{
-			rnode->left()->setParent();
+			rnode->left()->setParent(node);
 		}
 		rnode->setParent(node->parent());
-		if(isNil(node->parent()));
+		if(node->parent()==nil)
 		{
 			root=rnode;
 		}
@@ -21,7 +21,7 @@ Status RBTree::L_Rotate(RBNode *node)
 		}
 		else 
 		{
-			node->parent->setRight(rnode);
+			node->parent()->setRight(rnode);
 		}
 		rnode->setLeft(node);
 		node->setParent(rnode);
@@ -33,18 +33,18 @@ Status RBTree::L_Rotate(RBNode *node)
 	}
 }
 
-Status R_Rotate(RBNode* node)
+Status RBTree::R_Rotate(RBNode* node)
 {
-	if(!isNil(node->left))
+	if(node->left()!=nil)
 	{
 		RBNode* lnode=node->left();
 		node->setLeft(lnode->right());
-		if(!isNil(lnode->right()))
+		if(lnode->right()!=nil)
 		{
 			lnode->right()->setParent(node);
 		}
 		lnode->setParent(node->parent());
-		if(isNil(node->parent))
+		if(node->parent()==nil)
 		{
 			root=lnode;
 		}
@@ -66,14 +66,78 @@ Status R_Rotate(RBNode* node)
 	}
 }
 
-RBTree::RBTree()
+Status RBTree::addNode(const int &mykey)
 {
-	root=new RBNode;
+	RBNode* p=nil;
+	RBNode* pre=nil;
+	RBNode* t=new RBNode;
+	t->setKey(mykey);
+	p=__find(mykey);
+	if(p==nil)
+	{
+		p=root;
+		while(p!=nil)
+		{
+			pre=p;
+			if(mykey<p->key())
+			{
+				p=p->left();
+			}
+			else
+			{
+				p=p->right();
+			}
+		}
+		t->setParent(pre);
+		if(pre==nil)				//The pointer dosen't move at all means the tree is empty
+		{
+			root=t;
+		}
+		else if(t->key()<pre->key())
+		{
+			pre->setLeft(t);
+		}
+		else
+		{
+			pre->setRight(t);
+		}
+		t->setLeft(nil);
+		t->setRight(nil);
+		t->setColor(RED);
+		//adjustRBNode(t);
+	}
+	else
+	{
+		return NODE_ALREADY_EXIST;
+	}
+}
+
+RBNode* RBTree::__find(const int &mykey)
+{
+	RBNode* p=root;
+	while(p!=nil)
+	{
+		if(p->key()==mykey) return p;
+		if(mykey<p->key())
+		{
+			p=p->left();
+		}
+		else
+		{
+			p=p->right();
+		}
+	}
+	return nil;
+}
+
+
+
+RBTree::RBTree()				//Initially the tree has no Node at all
+{								//But here we use nil pivot instead of NULL to show the tree is empty
 	nil=new RBNode;
-	root.setLeft(nil);
-	root.setRight(nil);
-	nil.setLeft(root);
-	nil.setRight(root);
+	nil->setLeft(root);
+	nil->setRight(root);
+	root=nil;
 }
 
 

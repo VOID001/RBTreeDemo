@@ -104,7 +104,7 @@ Status RBTree::addNode(const int &mykey)
 		t->setLeft(nil);
 		t->setRight(nil);
 		t->setColor(RED);
-		//adjustRBNode(t);
+		insertAdjustRBNode(t);
 	}
 	else
 	{
@@ -130,7 +130,52 @@ RBNode* RBTree::__find(const int &mykey)
 	return nil;
 }
 
-
+Status RBTree::insertAdjustRBNode(RBNode *z)
+{
+	while(z->parent()->color()==RED)
+	{
+		if(z->parent()==z->parent()->parent()->left())
+		{
+			RBNode* y=z->parent()->parent()->right();
+			if(y->color()==RED)
+			{
+				z->parent()->setColor(BLACK);
+				y->setColor(BLACK);
+				z->parent()->parent()->setColor(RED);
+				z=z->parent()->parent();
+			}
+			else if(z==z->parent()->right())
+			{
+				z=z->parent();
+				L_Rotate(z);
+			}
+			z->parent()->setColor(BLACK);
+			z->parent()->parent()->setColor(RED);
+			R_Rotate(z->parent()->parent());
+		}
+		else
+		{
+			RBNode* y=z->parent()->parent()->left();
+			if(y->color()==RED)
+			{
+				z->parent()->setColor(BLACK);
+				y->setColor(BLACK);
+				z->parent()->parent()->setColor(RED);
+				z=z->parent()->parent();
+			}
+			else if(z==z->parent()->left())
+			{
+				z=z->parent();
+				R_Rotate(z);
+			}
+			z->parent()->setColor(BLACK);
+			z->parent()->parent()->setColor(RED);
+			L_Rotate(z->parent()->parent());
+		}
+	}
+	root->setColor(BLACK);
+	return OK;
+}
 
 RBTree::RBTree()				//Initially the tree has no Node at all
 {								//But here we use nil pivot instead of NULL to show the tree is empty

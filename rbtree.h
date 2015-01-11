@@ -12,7 +12,7 @@ private:
 	Status R_Rotate(RBNode* node);
 	bool isNil(RBNode* node);
 	RBNode* __find(const int& key);
-	Status adjustRBNode(RBNode* node);
+	Status insertAdjustRBNode(RBNode* node);
 	//Status __addNode(RBNode* z);
 public:
 	Status addNode(const int& key);

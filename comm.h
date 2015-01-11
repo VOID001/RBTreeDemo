@@ -10,7 +10,9 @@
  OF overflow issue occured
  NOTFUND return this when a node cannot be found in tree
  TREECONSTRUCT_ERR the tree must be built wrong
+ NODE_ALREADY_EXIST the key has already be used before
   */
-typedef enum{OK,OF,NOTFOUND,TREECONSTRUCT_ERR} Status;
+typedef enum{OK,OF,NOTFOUND,TREECONSTRUCT_ERR,NODE_ALREADY_EXIST} Status;
+typedef enum{RED,BLACK} NodeColor;
 
 #endif // COMM_H

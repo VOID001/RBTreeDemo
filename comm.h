@@ -1,6 +1,8 @@
 #ifndef COMM_H
 #define COMM_H
 #include<QtGui>
+#include<iostream>
+#include<cstdio>
 
 
 //Define enumeration type Status

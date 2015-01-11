@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include"ui_rbtreedemowindow.h"
+#include"rbtree.h"
+
 
 class RBTreeDemoWindow : public QMainWindow,public Ui::RBTreeDemoWindow
 {
@@ -13,6 +15,7 @@ public:
     ~RBTreeDemoWindow();
     
 private:
+	RBTree rbT;
 };
 
 #endif // RBTREEDEMOWINDOW_H

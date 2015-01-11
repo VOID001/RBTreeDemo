@@ -6,13 +6,16 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-	//QApplication a(argc, argv);
-	//RBTreeDemoWindow w;
-	//w.show();
+	#ifndef debug
+	QApplication a(argc, argv);
+	RBTreeDemoWindow w;
+	w.show();
 
-	//return a.exec();
+	return a.exec();
 	
+	#endif
 	//Core DEBUG Version
+	#ifdef debug
 	QVector<RBNode*> qvec;
 	qvec.clear();
 	cout<<"*************DEBUG MODE***************"<<endl;
@@ -29,4 +32,5 @@ int main(int argc, char *argv[])
 	}
 	RBTree rbT;
 	rbT.createTree(qvec);
+	#endif
 }

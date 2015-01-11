@@ -12,6 +12,8 @@ private:
 	Status R_Rotate(RBNode* node);
 	bool isNil(RBNode* node);
 	RBNode* __find(const int& key);
+	RBNode* __find_min(RBNode* node);
+	RBNode* __find_max(RBNode* node);
 	Status insertAdjustRBNode(RBNode* node);
 	//Status __addNode(RBNode* z);
 public:

@@ -13,8 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        rbtreedemowindow.cpp
+        rbtreedemowindow.cpp \
+    rbnode.cpp \
+    rbtree.cpp \
+    rblink.cpp
 
-HEADERS  += rbtreedemowindow.h
+HEADERS  += rbtreedemowindow.h \
+    rbnode.h \
+    rbtree.h \
+    comm.h \
+    rblink.h
 
 FORMS    += rbtreedemowindow.ui

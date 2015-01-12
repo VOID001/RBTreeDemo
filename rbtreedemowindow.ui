@@ -14,7 +14,7 @@
    <string>RBTreeDemoWIndow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QGraphicsView" name="gviewRBTree">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -37,10 +37,10 @@
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; color:#ff0000;&quot;&gt;R&lt;/span&gt;&lt;span style=&quot; font-size:24pt;&quot;&gt;BTree &lt;/span&gt;&lt;span style=&quot; font-size:24pt; color:#5500ff;&quot;&gt;Demo&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt;&quot;&gt;By VOID001&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnAddNode">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>140</y>
       <width>121</width>
       <height>51</height>
@@ -50,10 +50,10 @@
      <string>AddNode</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="btnGenRBTree">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>220</y>
       <width>121</width>
       <height>51</height>
@@ -63,10 +63,10 @@
      <string>Generate RBTree</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="btnDelNode">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>300</y>
       <width>121</width>
       <height>51</height>
@@ -76,10 +76,10 @@
      <string>DelNode</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_4">
+   <widget class="QPushButton" name="btnClear">
     <property name="geometry">
      <rect>
-      <x>590</x>
+      <x>560</x>
       <y>380</y>
       <width>121</width>
       <height>51</height>
@@ -87,6 +87,42 @@
     </property>
     <property name="text">
      <string>ClearTree</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtAddNodeVal">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>150</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>test</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="txtDelNodeVal">
+    <property name="geometry">
+     <rect>
+      <x>690</x>
+      <y>310</y>
+      <width>81</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>17</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>test</string>
     </property>
    </widget>
   </widget>

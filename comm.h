@@ -1,9 +1,16 @@
 #ifndef COMM_H
 #define COMM_H
+#include<QApplication>
 #include<QtGui>
 #include<QGraphicsItem>
 #include<QGraphicsLineItem>
+#include<QStyleOptionGraphicsItem>
+#include<QGraphicsSceneMouseEvent>
+#include<QMessageBox>
 #include<QInputDialog>
+#include<QGraphicsScene>
+#include<QFontMetricsF>
+#include<QFontMetrics>
 #include<iostream>
 #include<cstdio>
 
@@ -19,5 +26,6 @@
   */
 typedef enum{OK,OF,NOTFOUND,TREECONSTRUCT_ERR,NODE_ALREADY_EXIST} Status;
 typedef enum{RED,BLACK} NodeColor;
+
 
 #endif // COMM_H

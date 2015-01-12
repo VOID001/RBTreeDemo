@@ -4,7 +4,7 @@
 
 using namespace std;
 
-//#define DEBUG;
+#define DEBUG;
 
 int main(int argc, char *argv[])
 {
@@ -34,10 +34,13 @@ int main(int argc, char *argv[])
 	}
 	RBTree rbT;
 	rbT.createTree(qvec);
-	cout<<"Now input the node you want to delete"<<endl;
-	int a;
-	cin>>a;
-	rbT.delNode(a);
-	cin>>a;
-	#endif
+	while(!rbT.empty())
+	{
+		cout<<"Now input the node you want to delete"<<endl;
+		int a;
+		cin>>a;
+		rbT.delNode(a);
+	}
+	//cin>>a;
+#endif
 }

@@ -17,10 +17,11 @@ private:
 	QColor nTextColor;
 	QColor nOutlineColor;
 	QString nText;
-	QSet<RBLink* > nodeLinks;
 	QRectF outlineRect() const;
 	int roundness(double size) const;
 public:
+	QSet<RBLink* > nodeLinks;
+	
 	RBNode(const int& key);
 	RBNode();
 	~RBNode();

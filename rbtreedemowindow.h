@@ -17,10 +17,10 @@ public:
     
 	QGraphicsScene* scene;
 	void addLink(RBNode* fromNode,RBNode* toNode);
+	QVector<RBNode* > qvec;							//When addNode called add One Node to qvec
 private:
 	typedef QPair<RBNode*,RBNode*> NodePair;
 	RBTree* rbT;
-	QVector<RBNode* > qvec;							//When addNode called add One Node to qvec
 	int seqNumber;
 	int zVal;
 	void setupNode(RBNode* node);
@@ -28,9 +28,11 @@ private:
 	
 private slots:
 	void addNode();
+	void delNode();
 	//void delNode();
 	void on_btnAddNode_clicked();
     void on_btnGenRBTree_clicked();
+    void on_btnDelNode_clicked();
 };
 
 

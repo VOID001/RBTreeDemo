@@ -33,3 +33,14 @@ void RBLink::trackNodes()
 	setLine(QLineF(myFromNode->pos(),myToNode->pos()));			//Use Coordinate to set a line
 }
 
+
+RBNode* RBLink::fromNode() const
+{
+	return myFromNode;
+}
+
+RBNode* RBLink::toNode() const
+{
+	return myToNode;
+}
+

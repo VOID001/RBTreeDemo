@@ -390,19 +390,37 @@ Status RBTree::__drawTree(RBTreeDemoWindow* window,RBNode *node,RBNode *father,i
 	}
 	else
 	{
+		RBNode* pNode;
+		RBNode* pFatherNode;
+		foreach(RBNode* tpNode,window->qvec)
+		{
+			if(tpNode->key()==node->key())
+			{
+				pNode=tpNode;
+				pNode->setColor(node->color());
+			}
+			if(tpNode->key()==father->key())
+			{
+				pFatherNode=tpNode;
+				pFatherNode->setColor(father->color());
+			}
+		}
 		if(node==root)
 		{
 			node->setPos(QPoint(sceneCenterPosX,sceneHeaderPosY));
+			pNode->setPos(QPoint(sceneCenterPosX,sceneHeaderPosY));
 		}
 		else
 		{
-			node->setPos(QPoint(father->pos().rx()+pos*30,father->pos().ry()+40));
+			node->setPos(QPoint(father->pos().rx()+pos*30000*(1.0/father->pos().ry()),father->pos().ry()+40));				//waiting for more elegant way to deal with it
+			pNode->setPos(QPoint(father->pos().rx()+pos*30000*(1.0/father->pos().ry()),father->pos().ry()+40));
 		}
 		node->setText(QString(QObject::tr("%1").arg(node->key())));
-		window->scene->addItem(node);
+		//window->scene->addItem(node);
 		if(father!=nil)
 		{
-			window->addLink(father,node);
+			//window->addLink(father,node);
+			window->addLink(pFatherNode,pNode);
 		}
 		__drawTree(window,node->left(),node,-1);
 		__drawTree(window,node->right(),node,1);

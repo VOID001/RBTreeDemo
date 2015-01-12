@@ -16,8 +16,11 @@ private:
 	RBNode* __find(const int& key);
 	RBNode* __find_min(RBNode* node);
 	RBNode* __find_max(RBNode* node);
+	RBNode* inOrderSuccessor(RBNode* node);
+	Status deleteAdjustRBNode(RBNode* node);
 	Status insertAdjustRBNode(RBNode* node);
 	Status __drawTree(RBTreeDemoWindow* window,RBNode* node, RBNode* father, int pos);			//this is a very important step!
+	
 	//Status __addNode(RBNode* z);
 public:
 	Status addNode(const int& key);

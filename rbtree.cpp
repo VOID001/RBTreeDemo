@@ -126,6 +126,54 @@ Status RBTree::addNode(const int &mykey)
 	}
 }
 
+Status RBTree::delNode(const int &key)
+{
+	RBNode* p=__find(key);
+	if(p==nil)
+	{
+		return NOTFOUND;
+	}
+	if(p->left()!=nil && p->right()!=nil)
+	{
+		RBNode* succ=inOrderSuccessor(p);
+		p->setKey(succ->key());
+		p=succ;
+	}
+	RBNode* pchild;
+	if(p->right()!=nil)
+	{
+		pchild=p->right();
+	}
+	else if(p->left()!=nil)
+	{
+		pchild=p->left();
+	}
+	else
+	{
+		pchild=nil;
+	}
+	pchild->setParent(p->parent());
+	if(p->parent()==nil)
+	{
+		root=nil;
+	}
+	else if(p==p->parent()->right())
+	{
+		p->parent()->setRight(pchild);
+	}
+	else
+	{
+		p->parent()->setLeft(pchild);
+	}
+	if(p->color()==BLACK && !(pchild==nil && pchild->parent()==nil))
+	{
+		deleteAdjustRBNode(pchild);
+	}
+	delete pchild;
+	return OK;
+	
+}
+
 RBNode* RBTree::__find(const int &mykey)
 {
 	RBNode* p=root;
@@ -193,6 +241,80 @@ Status RBTree::insertAdjustRBNode(RBNode *z)
 	return OK;
 }
 
+Status RBTree::deleteAdjustRBNode(RBNode *node)
+{
+	while(node!=root && node->color()==BLACK)
+	{
+		if(node==node->parent()->left())
+		{
+			RBNode* bro=node->parent()->right();
+			if(bro->color()==RED)
+			{
+				bro->setColor(BLACK);
+				if(node!=nil) node->parent()->setColor(RED);
+				L_Rotate(node->parent());
+			}
+			else
+			{
+				if(bro->left()->color()==BLACK && bro->right()->color==BLACK)
+				{
+					if(bro!=nil) bro->setColor(RED);
+					node=node->parent();
+				}
+				else if(bro->right()->color()==BLACK)
+				{
+					if(bro!=nil) bro->setColor(RED);
+					bro->left()->setColor(BLACK);
+					R_Rotate(bro);
+				}
+				else if(bro->right()->color()==RED)
+				{
+					if(bro!=nil) bro->setColor(node->parent()->color());
+					node->parent()->setColor(BLACK);
+					bro->right()->setColor(BLACK);
+					L_Rotate(node->parent());
+					node=root;
+				}
+			}
+		}
+		else
+		{
+			RBNode* bro=node->parent()->left();
+			if(bro->color()==RED)
+			{
+				bro->setColor(BLACK);
+				if(node!=nil) node->parent()->setColor(RED);
+				R_Rotate(node->parent());
+			}
+			else
+			{
+				if(bro->left()->color()==BLACK && bro->right()->color==BLACK)
+				{
+					if(bro!=nil) bro->setColor(RED);
+					node=node->parent();
+				}
+				else if(bro->left()->color()==BLACK)
+				{
+					if(bro!=nil) bro->setColor(RED);
+					bro->right()->setColor(BLACK);
+					L_Rotate(bro);
+				}
+				else if(bro->left()->color()==RED)
+				{
+					if(bro!=nil) bro->setColor(node->parent()->color());
+					node->parent()->setColor(BLACK);
+					bro->left()->setColor(BLACK);
+					R_Rotate(node->parent());
+					node=root;
+				}
+			}
+		}
+	}
+	root=node;
+	root->setColor(BLACK);
+	return OK;
+}
+
 RBNode* RBTree::__find_min(RBNode *node)
 {
 	RBNode* p=node;
@@ -211,6 +333,38 @@ RBNode* RBTree::__find_max(RBNode *node)
 		p=p->right();
 	}
 	return p;
+}
+
+RBNode* RBTree::inOrderSuccessor(RBNode* node)
+{
+	if(node==nil)
+	{
+		return nil;
+	}
+	RBNode* p = node->right();
+	while(p!=nil)
+	{
+		if(p->left()!=nil)
+		{
+			p=p->left();
+		}
+		else
+		{
+			break;
+		}
+	}
+	if(p == nil)  
+	{  
+		RBNode* pIndex = node->parent();  
+		pIndex = node;  
+		while(pIndex!=nil && p == p->right())  
+		{  
+			p = pIndex;  
+			pIndex = pIndex->parent();  
+		}  
+		p = pIndex;         //first parent's left or null  
+	}  
+	return p; 
 }
 
 Status RBTree::createTree(QVector<RBNode *> nodeContainer)

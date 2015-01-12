@@ -2,6 +2,8 @@
 #define RBTREE_H
 #include "comm.h"
 #include "rbnode.h"
+#include "rbtreedemowindow.h"
+
 
 class RBTree
 {
@@ -15,14 +17,16 @@ private:
 	RBNode* __find_min(RBNode* node);
 	RBNode* __find_max(RBNode* node);
 	Status insertAdjustRBNode(RBNode* node);
+	Status __drawTree(RBTreeDemoWindow* window,RBNode* node, RBNode* father, int pos);			//this is a very important step!
 	//Status __addNode(RBNode* z);
 public:
 	Status addNode(const int& key);
 	Status delNode(const int& key);
 	Status find(const int& key);
 	Status createTree(QVector<RBNode*> nodeContainer);
-	
+	Status drawTree(RBTreeDemoWindow *window);
 	//RBTree(QVector<RBNode*> nodeContanier);
+	bool empty();
 	RBTree();
 	~RBTree();
 	

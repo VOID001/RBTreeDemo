@@ -2,7 +2,7 @@
 #define RBNODE_H
 #include"comm.h"
 #include"rblink.h"
-class RBLink;
+
 class RBNode:public QGraphicsItem
 {
 	Q_DECLARE_TR_FUNCTIONS(RBNode)

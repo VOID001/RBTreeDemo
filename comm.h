@@ -9,10 +9,17 @@
 #include<QMessageBox>
 #include<QInputDialog>
 #include<QGraphicsScene>
+#include<QTranslator>
 #include<QFontMetricsF>
 #include<QFontMetrics>
 #include<iostream>
 #include<cstdio>
+
+class RBTree;
+class RBNode;
+class RBLink;
+class RBTreeDemoWindow;
+
 
 
 //Define enumeration type Status
@@ -27,5 +34,8 @@
 typedef enum{OK,OF,NOTFOUND,TREECONSTRUCT_ERR,NODE_ALREADY_EXIST} Status;
 typedef enum{RED,BLACK} NodeColor;
 
+const int sceneCenterPosX=500;
+const int sceneCenterPosY=500;
+const int sceneHeaderPosY=200;
 
 #endif // COMM_H

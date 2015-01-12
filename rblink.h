@@ -2,7 +2,6 @@
 #define RBLINK_H
 #include "comm.h"
 #include "rbnode.h"
-class RBNode;
 
 class RBLink:public QGraphicsLineItem
 {

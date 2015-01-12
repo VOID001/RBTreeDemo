@@ -222,7 +222,45 @@ Status RBTree::createTree(QVector<RBNode *> nodeContainer)
 	return OK;
 }
 
+Status RBTree::drawTree(RBTreeDemoWindow* window)
+{
+	__drawTree(window,root,nil,0);
+	return OK;
+}
 
+Status RBTree::__drawTree(RBTreeDemoWindow* window,RBNode *node,RBNode *father,int pos)
+{
+	if(node==nil)
+	{
+		return OK;
+	}
+	else
+	{
+		if(node==root)
+		{
+			node->setPos(QPoint(sceneCenterPosX,sceneHeaderPosY));
+		}
+		else
+		{
+			node->setPos(QPoint(father->pos().rx()+pos*30,father->pos().ry()+40));
+		}
+		node->setText(QString(QObject::tr("%1").arg(node->key())));
+		window->scene->addItem(node);
+		if(father!=nil)
+		{
+			window->addLink(father,node);
+		}
+		__drawTree(window,node->left(),node,-1);
+		__drawTree(window,node->right(),node,1);
+	}
+	return OK;
+}
+
+bool RBTree::empty()
+{
+	if(root==nil) return true;
+	return false;
+}
 
 RBTree::RBTree()				//Initially the tree has no Node at all
 {								//But here we use nil pivot instead of NULL to show the tree is empty
@@ -235,6 +273,8 @@ RBTree::RBTree()				//Initially the tree has no Node at all
 	nil->setColor(BLACK);
 	root->setParent(nil);
 }
+
+
 
 
 RBTree::~RBTree()

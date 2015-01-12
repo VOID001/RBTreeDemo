@@ -10,6 +10,7 @@ RBTreeDemoWindow::RBTreeDemoWindow(QWidget *parent) :
 	gviewRBTree->setDragMode(QGraphicsView::RubberBandDrag);
 	gviewRBTree->setRenderHints(QPainter::Antialiasing|QPainter::TextAntialiasing);
 	seqNumber=0;
+	rbT=new RBTree();
 }
 
 
@@ -63,4 +64,10 @@ void RBTreeDemoWindow::addLink(RBNode *fromNode, RBNode *toNode)
 void RBTreeDemoWindow::on_btnAddNode_clicked()
 {
 	addNode();
+}
+
+void RBTreeDemoWindow::on_btnGenRBTree_clicked()
+{
+	rbT->createTree(qvec);
+	rbT->drawTree(this);
 }

@@ -256,7 +256,7 @@ Status RBTree::deleteAdjustRBNode(RBNode *node)
 			}
 			else
 			{
-				if(bro->left()->color()==BLACK && bro->right()->color==BLACK)
+				if(bro->left()->color()==BLACK && bro->right()->color()==BLACK)
 				{
 					if(bro!=nil) bro->setColor(RED);
 					node=node->parent();
@@ -288,7 +288,7 @@ Status RBTree::deleteAdjustRBNode(RBNode *node)
 			}
 			else
 			{
-				if(bro->left()->color()==BLACK && bro->right()->color==BLACK)
+				if(bro->left()->color()==BLACK && bro->right()->color()==BLACK)
 				{
 					if(bro!=nil) bro->setColor(RED);
 					node=node->parent();

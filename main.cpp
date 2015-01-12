@@ -4,9 +4,11 @@
 
 using namespace std;
 
+//#define DEBUG;
+
 int main(int argc, char *argv[])
 {
-	#ifndef debug
+	#ifndef DEBUG
 	QApplication a(argc, argv);
 	RBTreeDemoWindow w;
 	w.show();
@@ -15,7 +17,7 @@ int main(int argc, char *argv[])
 	
 	#endif
 	//Core DEBUG Version
-	#ifdef debug
+	#ifdef DEBUG
 	QVector<RBNode*> qvec;
 	qvec.clear();
 	cout<<"*************DEBUG MODE***************"<<endl;
@@ -32,5 +34,10 @@ int main(int argc, char *argv[])
 	}
 	RBTree rbT;
 	rbT.createTree(qvec);
+	cout<<"Now input the node you want to delete"<<endl;
+	int a;
+	cin>>a;
+	rbT.delNode(a);
+	cin>>a;
 	#endif
 }
